@@ -1,0 +1,19 @@
+{
+  "name": "cyberflowers-bg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "caesarsol <cesare.soldini@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.0"
+  },
+  "dependencies": {
+    "regl": "^1.3.1"
+  }
+}
