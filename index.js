@@ -8,28 +8,35 @@ const { app, BrowserWindow } = electron
 watch(__dirname)
 
 app.on('ready', () => {
-  const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+  const displays = electron.screen.getAllDisplays()
+  // const displays = [electron.screen.getPrimaryDisplay()]
+  const windows = []
 
-  let win = new BrowserWindow({
-    type: 'desktop',
-    frame: false,
-    titleBarStyle: 'hidden',
-    width,
-    height,
-    show: false,
+  displays.forEach((display, i) => {
+    const { width, height } = display.workAreaSize
+
+    windows[i] = new BrowserWindow({
+      x: display.bounds.x,
+      y: display.bounds.y,
+      width,
+      height,
+      type: 'desktop',
+      frame: false,
+      show: false,
+    })
+
+    windows[i].once('ready-to-show', () => {
+      windows[i].show()
+    })
+
+    windows[i].on('closed', () => {
+      windows[i] = null
+    })
+
+    windows[i].loadURL(url.format({
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
   })
-
-  win.once('ready-to-show', () => {
-    win.show()
-  })
-
-  win.on('closed', () => {
-    win = null
-  })
-
-  win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
 })
