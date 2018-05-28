@@ -11,7 +11,8 @@
   "author": "caesarsol <cesare.soldini@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^2.0.0"
+    "electron": "^2.0.0",
+    "electron-reload": "^1.2.2"
   },
   "dependencies": {
     "gl-mat4": "^1.2.0",

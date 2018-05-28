@@ -1,7 +1,11 @@
 const path = require('path')
 const url = require('url')
 const electron = require('electron')
+const watch = require('electron-reload')
+
 const { app, BrowserWindow } = electron
+
+watch(__dirname)
 
 app.on('ready', () => {
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
